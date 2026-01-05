@@ -1,0 +1,72 @@
+---
+research_content_foundation:
+  description: 'Conduct comprehensive research on {topic} in the context of {subject_area}.
+    Gather information from multiple authoritative sources including academic papers,
+    industry reports, expert articles, and reputable websites. Focus on identifying
+    key concepts, current trends, practical examples, case studies, and supporting
+    statistics. Organize findings into a structured research brief that covers: 1)
+    Core concepts and definitions, 2) Current state and trends, 3) Practical applications
+    and examples, 4) Key statistics and data points, 5) Credible sources and references.'
+  expected_output: A comprehensive research brief in markdown format containing well-organized
+    information about {topic}, including key concepts, trends, examples, statistics,
+    and a complete list of credible sources with URLs and publication details.
+  agent: content_researcher
+define_content_strategy:
+  description: 'Analyze the {content_type} format and define specific strategic requirements
+    for creating content about {topic}. Determine: 1) Optimal content length and structure,
+    2) Target audience and tone, 3) Key messaging priorities, 4) Platform-specific
+    requirements and constraints, 5) Engagement optimization tactics. Provide detailed
+    guidelines that the content team should follow to ensure the final content perfectly
+    matches the {content_type} format expectations.'
+  expected_output: A detailed content strategy document in markdown format specifying
+    exact requirements for {content_type}, including length limits, structural guidelines,
+    tone specifications, key messaging priorities, and platform-specific optimization
+    tactics.
+  agent: content_strategist
+create_educational_content:
+  description: 'Using the research findings and following the strategic guidelines
+    from the content strategy, create content about {topic} specifically optimized
+    for {content_type}. Strictly adhere to the length, structure, and format requirements
+    specified in the strategy. Ensure the content is: 1) Within the exact length limits
+    for {content_type}, 2) Uses the recommended tone and style, 3) Includes only the
+    most essential and engaging information, 4) Follows platform-specific best practices,
+    5) Optimized for maximum engagement. Prioritize impact over comprehensiveness
+    when working with short-form formats.'
+  expected_output: A complete educational content piece in markdown format about {topic},
+    professionally written with clear structure, engaging explanations, practical
+    examples, and proper formatting suitable for {content_type}.
+  agent: content_writer
+  context:
+  - research_content_foundation
+  - define_content_strategy
+verify_content_accuracy:
+  description: 'Thoroughly fact-check all claims, statistics, examples, and references
+    in the educational content about {topic}. Cross-reference information with authoritative
+    sources, verify the accuracy of data points, check the credibility of examples,
+    and ensure all references are current and properly cited. Create a detailed fact-checking
+    report that identifies: 1) Verified accurate information, 2) Any inaccuracies
+    or questionable claims, 3) Missing citations or weak sources, 4) Suggested corrections
+    or improvements, 5) Overall assessment of content accuracy and reliability.'
+  expected_output: A detailed fact-checking report in markdown format that verifies
+    the accuracy of all factual claims in the content, identifies any issues, provides
+    source verification, and includes recommendations for corrections or improvements.
+  agent: fact_checker
+  context:
+  - create_educational_content
+edit_and_finalize_content:
+  description: 'Review and finalize the content about {topic} for {content_type},
+    ensuring it perfectly meets the strategic requirements and format specifications.
+    Focus on: 1) Verifying adherence to {content_type} length and structure limits,
+    2) Optimizing for platform-specific engagement, 3) Polishing language for maximum
+    impact, 4) Ensuring accuracy based on fact-checking feedback, 5) Final format
+    optimization. The content MUST fit the {content_type} format requirements - cut
+    excess content if necessary to meet platform constraints while maintaining core
+    messaging.'
+  expected_output: The final, polished educational content about {topic} in markdown
+    format, professionally edited with excellent structure, clarity, accuracy, and
+    formatting suitable for immediate publication or use in {content_type}.
+  agent: content_editor
+  context:
+  - create_educational_content
+  - verify_content_accuracy
+  - define_content_strategy
